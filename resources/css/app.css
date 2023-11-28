@@ -1,3 +1,15 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer base {
+  th, td {
+    @apply font-normal text-left px-[9px] first:pl-[18px] last:pr-[18px];
+  } 
+
+  tbody tr {
+    @apply border-solid border-stone-300 border-y-2 ;
+  } 
+}
+
+  
