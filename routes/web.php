@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('main');
-// });
+Route::get('/', function () {
+    return view('main');
+});
 
-Route::get('/', [ProductController::class, 'index'])->name('product.index');
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 Route::get('/edit', function () {
     return view('products.edit');

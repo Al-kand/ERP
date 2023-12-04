@@ -13,64 +13,67 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-['Roboto'] relative flex items-stretch min-h-screen text-[11px] leading-none">
-    <aside class="text-white w-[181px] bg-gray-700 flex-none font-normal leading-none">
-        <div class="flex">
-            <x-logo class="bg-white w-[79px] h-[59px] px-[12px] py-[18px] rounded-br-[20px]" />
-            <div class=" pl-[12px] pt-[7px] ">
-                Enterprise<br />
-                Resource<br />
-                Planning
+<body class="">
+    <div x-data="{ modelOpen: false }">
+        <button @click="modelOpen =!modelOpen"
+            class="px-3 py-2 space-x-2 text-sm tracking-wide text-white capitalize bg-indigo-500 rounded-md">
+            <span>Invite Member</span>
+        </button>
+
+        <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+            aria-modal="true">
+            <div class=" flex items-center justify-center min-h-screen px-4 text-center">
+                <div x-cloak @click="modelOpen = false" x-show="modelOpen"
+                    class="bg-opacity-40 fixed inset-0 transition-opacity bg-gray-500" aria-hidden="true">
+                </div>
+                <div x-cloak x-show="modelOpen"
+                    class="px-[12px] py-[27px] w-[630px] h-[594px] relative bg-gray-700 border border-black font-['Roboto'] shadow-xl transition-all transform inline-block my-20">
+                    <h2 class="mb-[21px] text-white text-xl font-bold font-['Roboto'] leading-none ">
+                        Редактировать MTOK-B3/216-1KT3645-K
+                    </h2>
+                    <div class="w-[30px] h-[30px] right-[5px] top-[18px] absolute">
+                        <x-icon::close />
+                    </div>
+                    <x-text-input name="art" label="Артикул" class="w-[472px]" value="MTOK-B3/216-1KT3645-K" />
+
+                    <x-text-input name="art" label="Название" class="w-[472px]" />
+
+                    <x-select-input name="art" label="Статус" class="w-[472px]" />
+
+                    <h3 class="mb-[26px] font-['Roboto'] text-sm font-bold leading-[11px] text-white">Атрибуты</h3>
+
+                    <div class="mb-[2px]">
+                        <x-text-input name="art" label="Название" class="w-[219px]" />
+                        <x-text-input name="art" label="Значение" class="w-[219px]" />
+                        <button class=" inline-block">
+                            <x-icon::delete class=" fill-[#c4c4c4] opacity-40 w-[10px] h-[11px] " />
+                        </button>
+                    </div>
+                    <div class="mb-[2px]">
+                        <x-text-input name="art" label="Название" class="w-[219px]" />
+                        <x-text-input name="art" label="Значение" class="w-[219px]" />
+                        <button class=" inline-block">
+                            <x-icon::delete class=" fill-[#c4c4c4] opacity-40 w-[10px] h-[11px] " />
+                        </button>
+                    </div>
+                    <div class="mb-[2px]">
+                        <x-text-input name="art" label="Название" class="w-[219px]" />
+                        <x-text-input name="art" label="Значение" class="w-[219px]" />
+                        <button class=" inline-block">
+                            <x-icon::delete class=" fill-[#c4c4c4] opacity-40 w-[10px] h-[11px] " />
+                        </button>
+                    </div>
+                    <button
+                        class="text-cyan-400 text-[9px] leading-[11px] underline decoration-dashed underline-offset-2 block mb-[30px]">
+                        + Добавить атрибут
+                    </button>
+                    <button
+                        class="text-white text-[11px] font-medium font-['Roboto'] leading-[11px] w-[139px] h-[30px] bg-cyan-400 rounded-[5px] ">
+                        Сохранить
+                    </button>
+                </div>
             </div>
         </div>
-        <nav class="pl-[34px] pt-[11px] text-white/[.7] text-xs leading-none">
-            <ul>
-                <li>Продукты</li>
-            </ul>
-        </nav>
-    </aside>
-
-    <div class="bg-slate-100 grow">
-        <header class=" flex items-center h-[59px] px-[18px] relative  bg-white">
-            <h1 class="left-[197px] top-[25px]  text-red-600  flex-auto ">
-                ПРОДУКТЫ
-            </h1>
-            <div class=" absolute left-[18px] bottom-0 w-[60px] h-[3px]  bg-red-600"></div>
-            <div class=" text-gray-400 text-[11px] w-[136px]">
-                Иванов Иван Иванович
-            </div>
-        </header>
-        <main class="flex">
-            <table class="w-[629px] text-neutral-500 table-fixed">
-                <thead>
-                    <tr class="h-[29px] text-[9px]">
-                        <th>АРТИКУЛ</th>
-                        <th>НАЗВАНИЕ</th>
-                        <th>СТАТУС</th>
-                        <th>АТРИБУТЫ</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white">
-                    <tr class="h-[56px]">
-                        <td>mtokb2</td>
-                        <td>MTOK-B2/216-1KT3645-K</td>
-                        <td>Доступен</td>
-                        <td>Цвет: черный<br>Размер: L</td>
-                    </tr>
-                    <tr class="h-[56px]">
-                        <td>mtokb3</td>
-                        <td>MTOK-B3/216-1KT3645-K</td>
-                        <td>Не доступен</td>
-                        <td>Цвет: серый<br>Размер: XL</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="p-[18px] grow text-right">
-                <button class=" bg-cyan-400 rounded-md px-[43px] py-[9px] text-white text-[11px] font-medium ">
-                    Добавить
-                </button>
-            </div>
-        </main>
     </div>
 </body>
 

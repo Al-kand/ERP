@@ -13,8 +13,8 @@
         {{ $attributes->merge([
             'class' => 'h-[30px] rounded-[5px] px-[9px] text-[11px] ',
         ]) }}>
-        <option value="1">Доступен</option>
-        <option value="2">Не доступен</option>
+        <option>Доступен</option>
+        <option>Не доступен</option>
     </select>
     @error($name)
         <span class="text-red_500 font-ubuntu block ml-3 -mt-4 text-sm font-normal leading-none">{{ $message }}</span>

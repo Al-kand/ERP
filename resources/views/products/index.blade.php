@@ -29,7 +29,6 @@
             </ul>
         </nav>
     </aside>
-
     <div class="bg-slate-100 grow">
         <header class=" flex items-center h-[59px] px-[18px] relative  bg-white">
             <h1 class="left-[197px] top-[25px]  text-red-600  flex-auto ">
@@ -40,7 +39,7 @@
                 Иванов Иван Иванович
             </div>
         </header>
-        <main class="flex">
+        <main x-data="showModals" class="flex">
             <table class="w-[629px] text-neutral-500 table-fixed">
                 <thead>
                     <tr class="h-[29px] text-[9px]">
@@ -51,10 +50,10 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-
                     @foreach ($products as $product)
                         <tr class="h-[56px]">
-                            <td>{{ $product->article }}</td>
+                            <td><button type="button"
+                                    @click="showProduct({{ $product->id }})">{{ $product->article }}</button></td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->status }}</td>
                             <td>
@@ -66,13 +65,53 @@
                                 @endforeach
                             </td>
                         </tr>
-                    @endforeach                   
+                    @endforeach
                 </tbody>
             </table>
             <div class="p-[18px] grow text-right">
-                <button class=" bg-cyan-400 rounded-md px-[43px] py-[9px] text-white text-[11px] font-medium ">
+                <button @click="showCreate"
+                    class=" bg-cyan-400 rounded-md px-[43px] py-[9px] text-white text-[11px] font-medium ">
                     Добавить
                 </button>
+            </div>
+            <div x-cloak x-show="modal" class="fixed inset-0 z-50 overflow-y-auto">
+                <div class="flex items-center justify-center min-h-screen px-4 text-center">
+                    <div @click="hide" class="bg-opacity-40 fixed inset-0 transition-opacity bg-gray-500"></div>
+
+                    <div x-cloak x-show="create"
+                        class="px-[12px] py-[27px] w-[630px] relative bg-gray-700 border border-black font-['Roboto'] shadow-xl transition-all transform inline-block my-20 text-left">
+                        <h2 class="mb-[21px] text-white text-xl font-bold font-['Roboto'] leading-none ">
+                            Добавить продукт
+                        </h2>
+                        <button @click="hide" class="w-[30px] h-[30px] right-[5px] top-[18px] absolute ">
+                            <x-icon::close />
+                        </button>
+                        <form action="{{ route('products.store') }}" method="post">
+                            @csrf
+                            <x-product-form />
+                        </form>
+                    </div>
+
+                    <div x-cloak x-show="edit"
+                        class="px-[12px] py-[27px] w-[630px] relative bg-gray-700 border border-black font-['Roboto'] shadow-xl transition-all transform inline-block my-20 text-left">
+                        <h2 class="mb-[21px] text-white text-xl font-bold font-['Roboto'] leading-none "
+                            x-text="'Редактировать ' + product.name">
+                        </h2>
+                        <button @click="hide" class="w-[30px] h-[30px] right-[5px] top-[18px] absolute ">
+                            <x-icon::close />
+                        </button>
+                        <form x-bind:action="`/products/${product.id}`" method="post">
+                            @csrf
+                            @method('put')
+                            <x-product-form />
+                        </form>
+                    </div>
+
+                    <div x-cloak x-show="show">
+                        <x-product-show />
+                    </div>
+
+                </div>
             </div>
         </main>
     </div>
