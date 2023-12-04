@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    
     <title>Products</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,7 +88,7 @@
                         <button @click="hide" class="w-[30px] h-[30px] right-[5px] top-[18px] absolute ">
                             <x-icon::close />
                         </button>
-                        <form action="{{ route('products.store') }}" method="post">
+                        <form action="{{ route('products.store') }}" method="post" x-on:submit.prevent="submitForm">
                             @csrf
                             <x-product-form />
                         </form>
@@ -100,13 +102,13 @@
                         <button @click="hide" class="w-[30px] h-[30px] right-[5px] top-[18px] absolute ">
                             <x-icon::close />
                         </button>
-                        <form x-bind:action="`/products/${product.id}`" method="post">
+                        <form x-bind:action="`api/products/${product.id}`" method="post" x-on:submit.prevent="submitForm">
                             @csrf
                             @method('put')
                             <x-product-form />
                         </form>
                     </div>
-
+                    
                     <div x-cloak x-show="show">
                         <x-product-show />
                     </div>

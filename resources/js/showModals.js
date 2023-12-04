@@ -40,4 +40,21 @@ export default () => ({
         this.create = this.show = this.edit = false;
     },
 
+    submitForm() {
+        let body = new FormData(this.$el);
+        fetch(this.$el.getAttribute('action'), {
+            method: this.$el.getAttribute('method'),
+            headers: {
+                'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content,
+                "Accept": "application/json",
+            },
+            body: body
+        }).then(response => {
+            if (response.ok)
+                location.reload();
+            else
+                response.json().then(data => console.log(data.errors));
+        });
+    }
+
 })

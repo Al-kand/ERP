@@ -37,8 +37,14 @@ class Product extends Model
      */
     protected function status(): Attribute
     {
+        $data = [
+            'available' => 'Доступен',
+            'unavailable' => 'Не доступен',
+        ];
+
         return Attribute::make(
-            get: fn (string $value) => $value === 'available' ? 'Доступен' : 'Не доступен',
+            get: fn (string $value) => $data[$value],
+            set: fn (string $value) => array_search($value, $data),
         );
     }
 

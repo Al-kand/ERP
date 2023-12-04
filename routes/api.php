@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::post('products', [ProductController::class, 'store'])->name('products.store');
+
+Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');

@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
             [
                 'article' => 'mtokb2',
                 'name' => 'MTOK-B2/216-1KT3645-K',
-                'status' => 'available',
+                'status' => 'Доступен',
                 'data' => [
                     'Цвет' => 'черный',
                     'Размер' => 'L'
@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
             [
                 'article' => 'mtokb3',
                 'name' => 'MTOK-B3/216-1KT3645-K',
-                'status' => 'unavailable',
+                'status' => 'Не доступен',
                 'data' => [
                     'Цвет' => 'серый',
                     'Размер' => 'XL'

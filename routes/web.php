@@ -19,13 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+
 Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-
-Route::get('/edit', function () {
-    return view('products.edit');
-});
-
-Route::get('/show', function () {
-    return view('products.show');
-});
