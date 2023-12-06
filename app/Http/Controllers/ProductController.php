@@ -6,6 +6,9 @@ use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use App\Http\Resources\ProductResource;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+
 
 class ProductController extends Controller
 {
@@ -22,17 +25,17 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): JsonResponse
     {
-        $product = Product::create($request->validated());
+        Product::create($request->validated());
 
-        return redirect()->route('product.index');
+        return response()->json();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Product $product): ProductResource
     {
         return new ProductResource($product);
     }
@@ -40,17 +43,21 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, Product $product): JsonResponse
     {
+        
+        $this->authorize('update', [$product, $request]);
+
         $product->fill($request->validated());
         $product->save();
-        return redirect()->route('product.index');
+
+        return response()->json();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
 
