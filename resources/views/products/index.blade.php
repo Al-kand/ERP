@@ -76,12 +76,12 @@
                     Добавить
                 </button>
             </div>
-            <div x-cloak x-show="modal" class="fixed inset-0 z-50 overflow-y-auto">
+            <div x-cloak x-show="modal" class=" fixed inset-0 z-50 overflow-y-auto" style="display: none;">
                 <div class="flex items-center justify-center min-h-screen px-4 text-center">
                     <div @click="hide" class="bg-opacity-40 fixed inset-0 transition-opacity bg-gray-500"></div>
 
                     <div x-cloak x-show="create"
-                        class="px-[12px] py-[27px] w-[630px] relative bg-gray-700 border border-black font-['Roboto'] shadow-xl transition-all transform inline-block my-20 text-left">
+                        class="px-[12px] py-[27px] w-[630px] relative bg-gray-700 border border-black font-['Roboto'] shadow-xl transition-all transform inline-block my-20 text-left ">
                         <h2 class="mb-[21px] text-white text-xl font-bold font-['Roboto'] leading-none ">
                             Добавить продукт
                         </h2>
